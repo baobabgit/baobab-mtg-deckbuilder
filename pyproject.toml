@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "baobab-mtg-deckbuilder"
-version = "0.8.0"
+version = "0.9.0"
 description = "Bibliothèque Python pour construire, évaluer, comparer et optimiser des decks Magic: The Gathering."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -64,6 +64,7 @@ per-file-ignores = [
     "src/baobab_mtg_deckbuilder/deck_statistics/__init__.py:F401",
     "src/baobab_mtg_deckbuilder/evaluation/__init__.py:F401",
     "src/baobab_mtg_deckbuilder/generation/__init__.py:F401",
+    "src/baobab_mtg_deckbuilder/mutation/__init__.py:F401",
 ]
 exclude = [
     ".git",

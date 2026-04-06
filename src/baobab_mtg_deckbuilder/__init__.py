@@ -7,6 +7,7 @@ from baobab_mtg_deckbuilder.exceptions import (
     DeckConfigurationException,
     DeckEvaluationException,
     DeckGenerationException,
+    DeckMutationException,
     DeckOptimizationException,
     DeckSimulationException,
     DeckValidationException,
@@ -62,6 +63,18 @@ from baobab_mtg_deckbuilder.generation import (
     main_minimum_for_format,
 )
 from baobab_mtg_deckbuilder.generation import __all__ as _GENERATION_ALL
+from baobab_mtg_deckbuilder.mutation import (
+    AdjustLandCountOperator,
+    ColorFixOperator,
+    DeckMutation,
+    DeckMutationContext,
+    DeckMutationOperator,
+    DeckMutationResult,
+    DeckReplacementSuggestion,
+    ReplaceCardOperator,
+    RoleSwapOperator,
+)
+from baobab_mtg_deckbuilder.mutation import __all__ as _MUTATION_ALL
 from baobab_mtg_deckbuilder.pool import (
     CardPool,
     CardPoolEntry,
@@ -92,7 +105,7 @@ from baobab_mtg_deckbuilder.validation import __all__ as _VALIDATION_ALL
 try:
     __version__: str = version("baobab-mtg-deckbuilder")
 except PackageNotFoundError:
-    __version__ = "0.8.0"
+    __version__ = "0.9.0"
 
 __all__ = [
     "__version__",
@@ -101,6 +114,7 @@ __all__ = [
     *_DECK_STATISTICS_ALL,
     *_EVALUATION_ALL,
     *_GENERATION_ALL,
+    *_MUTATION_ALL,
     *_VALIDATION_ALL,
     *_POOL_ALL,
 ]
