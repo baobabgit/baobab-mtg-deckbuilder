@@ -19,6 +19,10 @@ Les entrées les plus récentes apparaissent en premier.
 
 - Les features validation de format, génération et optimisation peuvent s’appuyer sur un deck immuable et des synthèses stables (clé de comptage = nom anglais Oracle).
 
+### Suivi
+
+- Réintégration de `.github/workflows/ci.yml` sur `main` (fichier absent après merge de la PR ; workflow CI rétabli pour les push/PR).
+
 ## 2026-04-06 (feature/project-bootstrap)
 
 ### Modifications
