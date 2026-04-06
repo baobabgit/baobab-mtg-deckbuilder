@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "baobab-mtg-deckbuilder"
-version = "0.2.0"
+version = "0.3.0"
 description = "Bibliothèque Python pour construire, évaluer, comparer et optimiser des decks Magic: The Gathering."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -59,6 +59,7 @@ extend-ignore = ["E203", "W503"]
 per-file-ignores = [
     "src/baobab_mtg_deckbuilder/__init__.py:F401",
     "src/baobab_mtg_deckbuilder/deck/__init__.py:F401",
+    "src/baobab_mtg_deckbuilder/validation/__init__.py:F401",
 ]
 exclude = [
     ".git",
@@ -103,6 +104,10 @@ max-line-length = 100
 [tool.pylint.design]
 max-args = 8
 max-attributes = 12
+
+[tool.pylint.SIMILARITIES]
+# Règles main min construit / limité partagent volontairement la même forme d'appel.
+min-similarity-lines = 10
 
 # --- bandit ---
 [tool.bandit]

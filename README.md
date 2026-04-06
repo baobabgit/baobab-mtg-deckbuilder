@@ -29,6 +29,11 @@ side = bd.DeckSection.sideboard([bd.DeckCardEntry("Pyroblast", 2)])
 deck = bd.Deck.from_sections(main, side)
 print(deck.total_quantity, deck.summary().main_quantity_by_english_name)
 
+# Validation structurelle MVP (Construit / Limité)
+fmt = bd.ConstructedFormatDefinition()
+report = fmt.validate(deck)
+print(report.is_valid, report.error_count, report.warning_count, report.info_count)
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```

@@ -2,6 +2,25 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/format-validation)
+
+### Modifications
+
+- Ajout du paquet `validation/` : `FormatDefinition` (orchestration `validate`), `ConstructedFormatDefinition` / `LimitedFormatDefinition`, `DeckConstraint` + `DeckConstraintSet`, `DeckValidationRule` (ABC) et règles concrètes (taille du main, exemplaires max hors bases, taille du sideboard construit, minimum limité, infos/avertissements sideboard limité).
+- `DeckValidationIssue` + `DeckValidationIssueSeverity` + `DeckValidationReport` (tri déterministe, `is_valid`, compteurs par gravité).
+- Constante `DEFAULT_BASIC_LAND_ORACLE_NAMES` pour la règle des 4 exemplaires.
+- Paramètres de format invalides → `DeckConfigurationException`.
+- Tests miroir + double partagé `always_error_validation_rule.py` (import `tests.…`), extension des exports publics ; version `0.3.0`, `README` / `CHANGELOG` / journal mis à jour ; `flake8` `per-file-ignores` pour `validation/__init__.py`.
+- Fonction partagée `maindeck_minimum_support.issues_when_main_below_minimum` pour éviter la duplication pylint entre règles main min construit / limité ; `[tool.pylint.SIMILARITIES] min-similarity-lines = 10` en complément.
+
+### Buts
+
+- Livrer la feature **03_format_constraints_and_validation** : rapport typé (erreurs, warnings, infos), suggestions et entités affectées, sans dépendance externe.
+
+### Impact
+
+- Les pipelines d’optimisation et d’UI pourront consommer un rapport stable ; les listes de bases / seuils restent extensibles pour Commander, Brawl, etc.
+
 ## 2026-04-06 (feature/core-deck-model)
 
 ### Modifications

@@ -23,7 +23,7 @@ class TestPackageImports:
     def test_version_fallback_when_distribution_missing(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """If distribution metadata is missing, ``__version__`` falls back to ``0.2.0``."""
+        """If distribution metadata is missing, ``__version__`` falls back to ``0.3.0``."""
 
         def _raise(_name: str) -> str:
             raise PackageNotFoundError(_name)
@@ -31,7 +31,7 @@ class TestPackageImports:
         monkeypatch.setattr(importlib.metadata, "version", _raise)
         importlib.reload(pkg)
         try:
-            assert pkg.__version__ == "0.2.0"
+            assert pkg.__version__ == "0.3.0"
         finally:
             monkeypatch.undo()
             importlib.reload(pkg)
@@ -67,6 +67,29 @@ class TestPackageImports:
             if isinstance(obj, str):
                 assert len(obj) > 0
             else:
+                assert obj.__module__.startswith("baobab_mtg_deckbuilder")
+
+    def test_public_validation_exported(self) -> None:
+        """Validation types are available from the package root."""
+        names = {
+            "FormatDefinition",
+            "ConstructedFormatDefinition",
+            "LimitedFormatDefinition",
+            "DeckConstraint",
+            "DeckConstraintSet",
+            "DeckValidationRule",
+            "DeckValidationIssue",
+            "DeckValidationIssueSeverity",
+            "DeckValidationReport",
+            "DEFAULT_BASIC_LAND_ORACLE_NAMES",
+        }
+        for name in names:
+            assert hasattr(pkg, name)
+            obj = getattr(pkg, name)
+            if isinstance(obj, frozenset):
+                assert len(obj) > 0
+            else:
+                assert isinstance(obj, type)
                 assert obj.__module__.startswith("baobab_mtg_deckbuilder")
 
     def test_all_matches_exports(self) -> None:
