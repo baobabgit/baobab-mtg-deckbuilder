@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-04-06
+
+### Added
+
+- Sous-domaine `deck_statistics/` : `DeckStatistics.analyze` (courbe de mana des sorts, répartition couleurs WUBRG + `C` / `?`, types, terrains, copies par nom anglais, compteurs d’information manquante).
+- `CardAnalyticProfile`, `CardAnalyticProviderProtocol` (runtime checkable), `DeckStatisticsResult` (mappings figés), constante `MANA_CURVE_CAP` pour le regroupement des coûts élevés.
+- Export public des symboles statistiques depuis le package racine.
+
 ## [0.4.0] - 2026-04-06
 
 ### Added

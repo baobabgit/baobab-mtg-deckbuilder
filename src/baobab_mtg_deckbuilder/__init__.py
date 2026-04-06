@@ -20,6 +20,14 @@ from baobab_mtg_deckbuilder.deck import (
     DeckSummary,
 )
 from baobab_mtg_deckbuilder.deck import __all__ as _DECK_ALL
+from baobab_mtg_deckbuilder.deck_statistics import (
+    MANA_CURVE_CAP,
+    CardAnalyticProfile,
+    CardAnalyticProviderProtocol,
+    DeckStatistics,
+    DeckStatisticsResult,
+)
+from baobab_mtg_deckbuilder.deck_statistics import __all__ as _DECK_STATISTICS_ALL
 from baobab_mtg_deckbuilder.exceptions import __all__ as _EXCEPTIONS_ALL
 from baobab_mtg_deckbuilder.pool import (
     CardPool,
@@ -51,6 +59,13 @@ from baobab_mtg_deckbuilder.validation import __all__ as _VALIDATION_ALL
 try:
     __version__: str = version("baobab-mtg-deckbuilder")
 except PackageNotFoundError:
-    __version__ = "0.4.0"
+    __version__ = "0.5.0"
 
-__all__ = ["__version__", *_EXCEPTIONS_ALL, *_DECK_ALL, *_VALIDATION_ALL, *_POOL_ALL]
+__all__ = [
+    "__version__",
+    *_EXCEPTIONS_ALL,
+    *_DECK_ALL,
+    *_DECK_STATISTICS_ALL,
+    *_VALIDATION_ALL,
+    *_POOL_ALL,
+]
