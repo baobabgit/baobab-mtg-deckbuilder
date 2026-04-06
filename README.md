@@ -70,6 +70,17 @@ lands_m = bd.LandRatioEvaluator().evaluate(stats)
 print(curve_m.normalized_score, curve_m.explanation.summary)
 print(lands_m.metric_id, lands_m.raw_score)
 
+# Score agrégé pondéré (breakdown + explication de composition)
+metrics = (
+    curve_m,
+    lands_m,
+    bd.ColorBalanceEvaluator().evaluate(stats),
+    bd.ManaBaseConsistencyEvaluator().evaluate(stats),
+    bd.CardTypeBalanceEvaluator().evaluate(stats),
+)
+evaluation = bd.WeightedScoreAggregator().aggregate(metrics)
+print(evaluation.score.final_score, evaluation.explanation.summary)
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```
