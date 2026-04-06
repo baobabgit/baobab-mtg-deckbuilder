@@ -23,7 +23,7 @@ class TestPackageImports:
     def test_version_fallback_when_distribution_missing(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """If distribution metadata is missing, ``__version__`` falls back to ``0.3.0``."""
+        """If distribution metadata is missing, ``__version__`` falls back to ``0.4.0``."""
 
         def _raise(_name: str) -> str:
             raise PackageNotFoundError(_name)
@@ -31,7 +31,7 @@ class TestPackageImports:
         monkeypatch.setattr(importlib.metadata, "version", _raise)
         importlib.reload(pkg)
         try:
-            assert pkg.__version__ == "0.3.0"
+            assert pkg.__version__ == "0.4.0"
         finally:
             monkeypatch.undo()
             importlib.reload(pkg)
@@ -91,6 +91,19 @@ class TestPackageImports:
             else:
                 assert isinstance(obj, type)
                 assert obj.__module__.startswith("baobab_mtg_deckbuilder")
+
+    def test_public_pool_exported(self) -> None:
+        """Pool types and protocols are available from the package root."""
+        names = {
+            "CardPool",
+            "CardPoolEntry",
+            "CatalogCardProviderProtocol",
+            "CollectionPoolProviderProtocol",
+        }
+        for name in names:
+            assert hasattr(pkg, name)
+            obj = getattr(pkg, name)
+            assert obj.__module__.startswith("baobab_mtg_deckbuilder")
 
     def test_all_matches_exports(self) -> None:
         """``__all__`` lists symbols that exist on the package."""
