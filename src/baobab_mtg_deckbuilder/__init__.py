@@ -49,6 +49,19 @@ from baobab_mtg_deckbuilder.evaluation import (
 )
 from baobab_mtg_deckbuilder.evaluation import __all__ as _EVALUATION_ALL
 from baobab_mtg_deckbuilder.exceptions import __all__ as _EXCEPTIONS_ALL
+from baobab_mtg_deckbuilder.generation import (
+    ConstrainedGenerationStrategy,
+    DeckCandidate,
+    DeckGenerationRequest,
+    DeckGenerationResult,
+    DeckGenerationStrategy,
+    GreedyGenerationStrategy,
+    HybridGenerationStrategy,
+    RandomSeededGenerationStrategy,
+    build_maindeck_candidate,
+    main_minimum_for_format,
+)
+from baobab_mtg_deckbuilder.generation import __all__ as _GENERATION_ALL
 from baobab_mtg_deckbuilder.pool import (
     CardPool,
     CardPoolEntry,
@@ -79,7 +92,7 @@ from baobab_mtg_deckbuilder.validation import __all__ as _VALIDATION_ALL
 try:
     __version__: str = version("baobab-mtg-deckbuilder")
 except PackageNotFoundError:
-    __version__ = "0.7.0"
+    __version__ = "0.8.0"
 
 __all__ = [
     "__version__",
@@ -87,6 +100,7 @@ __all__ = [
     *_DECK_ALL,
     *_DECK_STATISTICS_ALL,
     *_EVALUATION_ALL,
+    *_GENERATION_ALL,
     *_VALIDATION_ALL,
     *_POOL_ALL,
 ]

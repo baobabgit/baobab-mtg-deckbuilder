@@ -23,7 +23,7 @@ class TestPackageImports:
     def test_version_fallback_when_distribution_missing(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """If distribution metadata is missing, ``__version__`` falls back to ``0.7.0``."""
+        """If distribution metadata is missing, ``__version__`` falls back to ``0.8.0``."""
 
         def _raise(_name: str) -> str:
             raise PackageNotFoundError(_name)
@@ -31,7 +31,7 @@ class TestPackageImports:
         monkeypatch.setattr(importlib.metadata, "version", _raise)
         importlib.reload(pkg)
         try:
-            assert pkg.__version__ == "0.7.0"
+            assert pkg.__version__ == "0.8.0"
         finally:
             monkeypatch.undo()
             importlib.reload(pkg)
@@ -116,6 +116,25 @@ class TestPackageImports:
             "CardAnalyticProviderProtocol",
             "DeckStatistics",
             "DeckStatisticsResult",
+        }
+        for name in names:
+            assert hasattr(pkg, name)
+            obj = getattr(pkg, name)
+            assert obj.__module__.startswith("baobab_mtg_deckbuilder")
+
+    def test_public_generation_exported(self) -> None:
+        """Deck generation types and strategies are available from the package root."""
+        names = {
+            "DeckGenerationStrategy",
+            "DeckGenerationRequest",
+            "DeckGenerationResult",
+            "DeckCandidate",
+            "GreedyGenerationStrategy",
+            "RandomSeededGenerationStrategy",
+            "ConstrainedGenerationStrategy",
+            "HybridGenerationStrategy",
+            "build_maindeck_candidate",
+            "main_minimum_for_format",
         }
         for name in names:
             assert hasattr(pkg, name)
