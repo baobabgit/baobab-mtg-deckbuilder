@@ -42,6 +42,28 @@ class MyCatalog:
 pool = bd.CardPool.from_catalog(MyCatalog())
 print(pool.is_theoretical, pool.quantity_available("Lightning Bolt"))
 
+# Statistiques analytiques (métadonnées injectées via un protocole)
+class MyAnalyticProvider:
+    def analytic_profile_for(self, name: str) -> bd.CardAnalyticProfile | None:
+        if name == "Lightning Bolt":
+            return bd.CardAnalyticProfile(
+                mana_value=1,
+                is_land=False,
+                color_identity=frozenset({"R"}),
+                type_categories=frozenset({"Instant"}),
+            )
+        if name == "Mountain":
+            return bd.CardAnalyticProfile(
+                mana_value=0,
+                is_land=True,
+                color_identity=frozenset({"R"}),
+                type_categories=frozenset({"Land"}),
+            )
+        return None
+
+stats = bd.DeckStatistics.analyze(deck, MyAnalyticProvider())
+print(stats.main_spell_mana_curve, stats.main_land_quantity)
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```

@@ -2,6 +2,21 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/deck-statistics)
+
+### Modifications
+
+- Ajout du paquet `deck_statistics/` : `CardAnalyticProfile`, `CardAnalyticProviderProtocol`, `DeckStatistics.analyze`, `DeckStatisticsResult`, `MANA_CURVE_CAP` ; règles déterministes documentées (terrain via `is_land` ou type `Land`, courbe sur sorts non-terrain, couleurs et types avec repli `?`, profils absents comptés à part).
+- Tests miroir + `FakeCardAnalyticProvider` ; extension des exports publics et du test de version fallback ; `0.5.0`, `README` / `CHANGELOG` / journal ; `flake8` `per-file-ignores` pour `deck_statistics/__init__.py`.
+
+### Buts
+
+- Livrer la feature **05_deck_statistics_and_aggregates** : agrégats réutilisables pour validation, évaluation et explicabilité, sans couplage aux stratégies d’optimisation.
+
+### Impact
+
+- Les pipelines pourront consommer un snapshot typé (courbe, couleurs, types, terrains, copies) en branchant un fournisseur de profils sur n’importe quelle source de données carte.
+
 ## 2026-04-06 (feature/pool-protocols)
 
 ### Modifications
