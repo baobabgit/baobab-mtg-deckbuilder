@@ -18,6 +18,17 @@ import baobab_mtg_deckbuilder as bd
 
 print(bd.__version__)
 
+# Modèle de deck (main + sideboard, immuable)
+main = bd.DeckSection.main(
+    [
+        bd.DeckCardEntry("Lightning Bolt", 4),
+        bd.DeckCardEntry("Mountain", 20),
+    ]
+)
+side = bd.DeckSection.sideboard([bd.DeckCardEntry("Pyroblast", 2)])
+deck = bd.Deck.from_sections(main, side)
+print(deck.total_quantity, deck.summary().main_quantity_by_english_name)
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```
