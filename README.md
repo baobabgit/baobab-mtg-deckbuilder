@@ -81,6 +81,21 @@ metrics = (
 evaluation = bd.WeightedScoreAggregator().aggregate(metrics)
 print(evaluation.score.final_score, evaluation.explanation.summary)
 
+# Génération de candidats (pool + format, graine, plusieurs decks)
+constructed = bd.ConstructedFormatDefinition()
+entries = tuple(
+    bd.CardPoolEntry(f"Nonbasic {i:02d}", 4) for i in range(15)
+)
+pool = bd.CardPool.from_entries(entries, pool_kind="physical")
+req = bd.DeckGenerationRequest(
+    format_definition=constructed,
+    pool=pool,
+    random_seed=42,
+    candidate_count=3,
+)
+result = bd.GreedyGenerationStrategy().generate(req)
+print(result.strategy_key, all(c.is_valid for c in result.candidates))
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```

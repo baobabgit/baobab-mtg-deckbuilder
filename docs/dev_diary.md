@@ -2,6 +2,21 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/generation-strategies)
+
+### Modifications
+
+- Ajout du paquet `generation/` : requête / résultat / candidat typés, `DeckGenerationStrategy` (ABC), stratégies gloutonne (ordre alphabétique + rotation), aléatoire semée, « contrainte » (rareté relative dans le pool), hybride pair/impair ; `build_maindeck_candidate` + `main_minimum_for_format`.
+- Tests miroir (requête, candidat, builder, stratégies, reproductibilité, comparaison) ; extension des exports publics et de `test_package_imports` ; version `0.8.0`, `README` / `CHANGELOG` / journal ; `flake8` `per-file-ignores` pour `generation/__init__.py`.
+
+### Buts
+
+- Livrer la feature **08_generation_strategies** : premières constructions automatiques depuis un `CardPool` et un `FormatDefinition`, sorties structurées et validées, déterminisme contrôlé.
+
+### Impact
+
+- Les optimiseurs et pipelines pourront produire des populations de decks candidats sans couplage UI/API, avec traçabilité (`strategy_key`, `candidate_index`, rapport de validation par candidat).
+
 ## 2026-04-06 (feature/weighted-scoring)
 
 ### Modifications
