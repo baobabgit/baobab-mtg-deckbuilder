@@ -5,6 +5,7 @@ from importlib.metadata import PackageNotFoundError, version
 from baobab_mtg_deckbuilder.exceptions import (
     BaobabMtgDeckbuilderException,
     DeckConfigurationException,
+    DeckEvaluationException,
     DeckGenerationException,
     DeckOptimizationException,
     DeckSimulationException,
@@ -28,6 +29,18 @@ from baobab_mtg_deckbuilder.deck_statistics import (
     DeckStatisticsResult,
 )
 from baobab_mtg_deckbuilder.deck_statistics import __all__ as _DECK_STATISTICS_ALL
+from baobab_mtg_deckbuilder.evaluation import (
+    CardTypeBalanceEvaluator,
+    ColorBalanceEvaluator,
+    DeckEvaluationExplanation,
+    DeckMetric,
+    LandRatioEvaluator,
+    ManaBaseConsistencyEvaluator,
+    ManaCurveEvaluator,
+    main_deck_card_quantity,
+    main_nonland_spell_quantity,
+)
+from baobab_mtg_deckbuilder.evaluation import __all__ as _EVALUATION_ALL
 from baobab_mtg_deckbuilder.exceptions import __all__ as _EXCEPTIONS_ALL
 from baobab_mtg_deckbuilder.pool import (
     CardPool,
@@ -59,13 +72,14 @@ from baobab_mtg_deckbuilder.validation import __all__ as _VALIDATION_ALL
 try:
     __version__: str = version("baobab-mtg-deckbuilder")
 except PackageNotFoundError:
-    __version__ = "0.5.0"
+    __version__ = "0.6.0"
 
 __all__ = [
     "__version__",
     *_EXCEPTIONS_ALL,
     *_DECK_ALL,
     *_DECK_STATISTICS_ALL,
+    *_EVALUATION_ALL,
     *_VALIDATION_ALL,
     *_POOL_ALL,
 ]
