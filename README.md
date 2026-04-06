@@ -64,6 +64,12 @@ class MyAnalyticProvider:
 stats = bd.DeckStatistics.analyze(deck, MyAnalyticProvider())
 print(stats.main_spell_mana_curve, stats.main_land_quantity)
 
+# Métriques heuristiques (indépendantes du moteur de règles)
+curve_m = bd.ManaCurveEvaluator().evaluate(stats)
+lands_m = bd.LandRatioEvaluator().evaluate(stats)
+print(curve_m.normalized_score, curve_m.explanation.summary)
+print(lands_m.metric_id, lands_m.raw_score)
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```

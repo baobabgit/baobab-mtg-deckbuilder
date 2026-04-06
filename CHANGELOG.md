@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-04-06
+
+### Added
+
+- Sous-domaine `evaluation/` : métriques heuristiques nommées (`DeckMetric`, `DeckEvaluationExplanation`) et évaluateurs `ManaCurveEvaluator`, `LandRatioEvaluator`, `ColorBalanceEvaluator`, `ManaBaseConsistencyEvaluator`, `CardTypeBalanceEvaluator` (scores brut + normalisé ``[0, 1]``, explications structurées).
+- Aides `main_deck_card_quantity` / `main_nonland_spell_quantity` pour réutiliser les agrégats statistiques.
+- `DeckEvaluationException` pour les erreurs d’orchestration d’évaluation.
+- Export public depuis le package racine.
+
 ## [0.5.0] - 2026-04-06
 
 ### Added

@@ -23,7 +23,7 @@ class TestPackageImports:
     def test_version_fallback_when_distribution_missing(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """If distribution metadata is missing, ``__version__`` falls back to ``0.5.0``."""
+        """If distribution metadata is missing, ``__version__`` falls back to ``0.6.0``."""
 
         def _raise(_name: str) -> str:
             raise PackageNotFoundError(_name)
@@ -31,7 +31,7 @@ class TestPackageImports:
         monkeypatch.setattr(importlib.metadata, "version", _raise)
         importlib.reload(pkg)
         try:
-            assert pkg.__version__ == "0.5.0"
+            assert pkg.__version__ == "0.6.0"
         finally:
             monkeypatch.undo()
             importlib.reload(pkg)
@@ -41,6 +41,7 @@ class TestPackageImports:
         names = {
             "BaobabMtgDeckbuilderException",
             "DeckValidationException",
+            "DeckEvaluationException",
             "DeckGenerationException",
             "DeckOptimizationException",
             "DeckSimulationException",
@@ -120,6 +121,27 @@ class TestPackageImports:
             assert hasattr(pkg, name)
             obj = getattr(pkg, name)
             assert obj.__module__.startswith("baobab_mtg_deckbuilder")
+
+    def test_public_evaluation_exported(self) -> None:
+        """Heuristic evaluation types are available from the package root."""
+        names = {
+            "DeckMetric",
+            "DeckEvaluationExplanation",
+            "ManaCurveEvaluator",
+            "LandRatioEvaluator",
+            "ColorBalanceEvaluator",
+            "ManaBaseConsistencyEvaluator",
+            "CardTypeBalanceEvaluator",
+            "main_deck_card_quantity",
+            "main_nonland_spell_quantity",
+        }
+        for name in names:
+            assert hasattr(pkg, name)
+            obj = getattr(pkg, name)
+            if callable(obj):
+                assert obj.__module__.startswith("baobab_mtg_deckbuilder")
+            else:
+                assert obj.__module__.startswith("baobab_mtg_deckbuilder")
 
     def test_all_matches_exports(self) -> None:
         """``__all__`` lists symbols that exist on the package."""

@@ -6,6 +6,9 @@ from baobab_mtg_deckbuilder.exceptions.baobab_mtg_deckbuilder_exception import (
 from baobab_mtg_deckbuilder.exceptions.deck_configuration_exception import (
     DeckConfigurationException,
 )
+from baobab_mtg_deckbuilder.exceptions.deck_evaluation_exception import (
+    DeckEvaluationException,
+)
 from baobab_mtg_deckbuilder.exceptions.deck_generation_exception import (
     DeckGenerationException,
 )
@@ -22,6 +25,7 @@ from baobab_mtg_deckbuilder.exceptions.deck_validation_exception import (
 __all__ = [
     "BaobabMtgDeckbuilderException",
     "DeckConfigurationException",
+    "DeckEvaluationException",
     "DeckGenerationException",
     "DeckOptimizationException",
     "DeckSimulationException",

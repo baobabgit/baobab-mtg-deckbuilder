@@ -2,6 +2,21 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/heuristic-evaluation)
+
+### Modifications
+
+- Ajout du paquet `evaluation/` : `DeckMetric`, `DeckEvaluationExplanation`, cinq évaluateurs (courbe vs gabarit L1, ratio terrains cible 38 %, entropie WUBRG, cohérence multiplicative profils/CMC/couleurs « ? », diversité des types avec score modéré mono-type), helpers `heuristic_inputs`.
+- `DeckEvaluationException` + test d’héritage ; fabrique de tests `deck_statistics_result` ; extension des imports publics et de `test_package_imports` ; version `0.6.0`, `README` / `CHANGELOG` / journal ; `flake8` `per-file-ignores` pour `evaluation/__init__.py`.
+
+### Buts
+
+- Livrer la feature **06_heuristic_evaluation_metrics** : premières métriques explicables sans simulation ni moteur de validation, pondérables via `metric_id` / `normalized_score`.
+
+### Impact
+
+- L’optimisation et l’UI pourront composer des scores à partir de `DeckStatisticsResult` + évaluateurs indépendants.
+
 ## 2026-04-06 (feature/deck-statistics)
 
 ### Modifications
