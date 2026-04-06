@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-04-06
+
+### Added
+
+- Sous-domaine `validation/` : formats `ConstructedFormatDefinition` et `LimitedFormatDefinition`, contraintes (`DeckConstraint`, `DeckConstraintSet`), règles (`DeckValidationRule` et implémentations MVP), issues (`DeckValidationIssue`, `DeckValidationIssueSeverity`) et `DeckValidationReport`.
+- Règles MVP Construit : main ≥ 60, ≤ 4 exemplaires par carte hors terrains de base (Oracle anglais, liste `DEFAULT_BASIC_LAND_ORACLE_NAMES`), sideboard ≤ 15.
+- Règles MVP Limité : main ≥ 40, info si sideboard non vide, avertissement si sideboard > 15 (repère souple).
+- `DeckConfigurationException` si paramètres de format incohérents.
+- Export public des symboles validation depuis le package racine.
+
 ## [0.2.0] - 2026-04-06
 
 ### Added
