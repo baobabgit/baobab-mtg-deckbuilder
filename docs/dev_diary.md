@@ -2,6 +2,23 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/core-deck-model)
+
+### Modifications
+
+- Ajout du paquet `deck/` : `DeckCardEntry` (nom anglais Oracle + quantité), `DeckSection` (identifiant + entrées, fabriques `main` / `sideboard`), `Deck` (validation des identifiants de sections, totaux, `list_view`, `summary`), `DeckListView` (tri déterministe), `DeckSummary` (totaux, regroupements par nom anglais, cartes `MappingProxyType`).
+- Validation métier via `DeckValidationException` (nom vide, quantité invalide, mauvais couple main/sideboard).
+- Tests miroir sous `tests/baobab_mtg_deckbuilder/deck/`, extension des tests d’export public.
+- Version `0.2.0`, `README` et `CHANGELOG` mis à jour.
+
+### Buts
+
+- Livrer la feature **02_core_deck_model** : représentation propre Construit/Limité, API typée, agrégats sans dépendance externe.
+
+### Impact
+
+- Les features validation de format, génération et optimisation peuvent s’appuyer sur un deck immuable et des synthèses stables (clé de comptage = nom anglais Oracle).
+
 ## 2026-04-06 (feature/project-bootstrap)
 
 ### Modifications
