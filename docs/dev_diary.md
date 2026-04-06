@@ -2,6 +2,22 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/mutation-operators)
+
+### Modifications
+
+- Ajout du paquet `mutation/` : résultats avec deck avant/après, rapports de validation, journal `DeckMutation`, justification textuelle ; opérateurs de remplacement (suggestion typée), ajustement ±1 d’un terrain de base MVP, correction de couleur via `CardAnalyticProviderProtocol`, échange main ↔ sideboard.
+- `DeckMutationException` ; utilitaires internes `mutation_support` (contraintes pool / construit, classification d’impact) ; dépendance contrôlée à `main_minimum_for_format` pour les garde-fous de taille de main.
+- Tests miroir (opérateurs, impacts, chaînage, validation, exception) ; version `0.9.0`, `README` / `CHANGELOG` / journal ; `flake8` `per-file-ignores` pour `mutation/__init__.py`.
+
+### Buts
+
+- Livrer la feature **09_mutation_operators** : transformations explicables et chaînables par un optimiseur, sans UI ni persistance.
+
+### Impact
+
+- Les moteurs de recherche pourront itérer sur `DeckMutationResult.deck_after` avec traçabilité (`mutations_applied`, `justification`, `impact`).
+
 ## 2026-04-06 (feature/generation-strategies)
 
 ### Modifications

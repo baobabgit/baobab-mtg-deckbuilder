@@ -83,8 +83,8 @@ print(evaluation.score.final_score, evaluation.explanation.summary)
 
 # Génération de candidats (pool + format, graine, plusieurs decks)
 constructed = bd.ConstructedFormatDefinition()
-entries = tuple(
-    bd.CardPoolEntry(f"Nonbasic {i:02d}", 4) for i in range(15)
+entries = tuple(bd.CardPoolEntry(f"Nonbasic {i:02d}", 4) for i in range(15)) + (
+    bd.CardPoolEntry("ExtraSpell", 4),
 )
 pool = bd.CardPool.from_entries(entries, pool_kind="physical")
 req = bd.DeckGenerationRequest(
@@ -95,6 +95,18 @@ req = bd.DeckGenerationRequest(
 )
 result = bd.GreedyGenerationStrategy().generate(req)
 print(result.strategy_key, all(c.is_valid for c in result.candidates))
+
+# Mutations traçables (avant / après, validation, impact optionnel via score_fn)
+suggestion = bd.DeckReplacementSuggestion(
+    remove_english_name="Nonbasic 00",
+    add_english_name="ExtraSpell",
+    section_identifier="main",
+    copies=1,
+    rationale="Échange pour diversifier les menaces.",
+)
+mut_ctx = bd.DeckMutationContext(deck=result.candidates[0].deck, format_definition=constructed, pool=pool)
+mut_res = bd.ReplaceCardOperator(suggestion).apply(mut_ctx)
+print(mut_res.operator_id, mut_res.impact, mut_res.validation_report_after.is_valid)
 
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
