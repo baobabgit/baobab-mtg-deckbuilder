@@ -34,6 +34,14 @@ fmt = bd.ConstructedFormatDefinition()
 report = fmt.validate(deck)
 print(report.is_valid, report.error_count, report.warning_count, report.info_count)
 
+# Pool catalogue / collection (protocoles, sans API externe)
+class MyCatalog:
+    def iter_theoretical_entries(self) -> tuple[bd.CardPoolEntry, ...]:
+        return (bd.CardPoolEntry("Lightning Bolt", None),)
+
+pool = bd.CardPool.from_catalog(MyCatalog())
+print(pool.is_theoretical, pool.quantity_available("Lightning Bolt"))
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```

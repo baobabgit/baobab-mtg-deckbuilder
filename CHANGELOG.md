@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-04-06
+
+### Added
+
+- Sous-domaine `pool/` : `CardPoolEntry`, `CardPool` (pool théorique catalogue vs réel collection), fusion par nom Oracle anglais, `lookup` / `quantity_available` / `distinct_card_count`.
+- Protocoles `CatalogCardProviderProtocol` et `CollectionPoolProviderProtocol` (`@runtime_checkable`) pour brancher catalogue et collection sans dépendance externe.
+- `DeckConfigurationException` si un pool réel contient une quantité indéfinie ou si la fusion collection le requiert.
+- Export public des symboles pool depuis le package racine.
+
 ## [0.3.0] - 2026-04-06
 
 ### Added

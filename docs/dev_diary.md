@@ -2,6 +2,23 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/pool-protocols)
+
+### Modifications
+
+- Ajout du paquet `pool/` : `CardPoolEntry` (nom Oracle anglais, quantité entière ou `None` pour non borné côté catalogue), `CardPool` immuable (`is_theoretical`, entrées fusionnées et triées), fabriques `from_catalog` / `from_collection` / `from_entries`, méthodes `lookup`, `quantity_available`, `distinct_card_count`.
+- Fusion théorique : `None` domine sur un même nom ; fusion collection : somme des entiers, `DeckConfigurationException` si quantité `None`.
+- Protocoles strictement typés et `runtime_checkable` : `CatalogCardProviderProtocol`, `CollectionPoolProviderProtocol`.
+- Tests miroir + fakes `FakeCatalogCardProvider` / `FakeCollectionPoolProvider` ; extension des tests d’export public ; version `0.4.0`, `README` / `CHANGELOG` / journal mis à jour ; `flake8` `per-file-ignores` pour `pool/__init__.py`.
+
+### Buts
+
+- Livrer la feature **04_pool_protocols_and_providers** : abstraction pool pour génération et validation, sans couplage à une implémentation catalogue ou collection concrète.
+
+### Impact
+
+- Les stratégies de génération et les validateurs pourront interroger un pool typé (disponibilité par nom Oracle) en injectant des adaptateurs respectant les protocoles.
+
 ## 2026-04-06 (feature/format-validation)
 
 ### Modifications
