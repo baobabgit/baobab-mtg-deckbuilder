@@ -2,6 +2,22 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/weighted-scoring)
+
+### Modifications
+
+- Ajout de l’agrégateur `WeightedScoreAggregator` (poids configurables, bonus / pénalité, `DeckScore`, `DeckEvaluationBreakdown` + lignes typées, `DeckEvaluation` avec explication de composition).
+- `default_metric_weights` et tableau TOML miroir dans `pyproject.toml` ; tests d’alignement code / fichier projet.
+- Version `0.7.0`, `README` / `CHANGELOG` / journal ; extension des exports publics et de `test_package_imports`.
+
+### Buts
+
+- Livrer la feature **07_weighted_scoring_and_explanations** : score global explicable, breakdown stable pour classement ou recommandation.
+
+### Impact
+
+- Les optimiseurs pourront composer un score unique tout en conservant la traçabilité par métrique.
+
 ## 2026-04-06 (feature/heuristic-evaluation)
 
 ### Modifications

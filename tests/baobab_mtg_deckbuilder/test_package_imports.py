@@ -23,7 +23,7 @@ class TestPackageImports:
     def test_version_fallback_when_distribution_missing(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """If distribution metadata is missing, ``__version__`` falls back to ``0.6.0``."""
+        """If distribution metadata is missing, ``__version__`` falls back to ``0.7.0``."""
 
         def _raise(_name: str) -> str:
             raise PackageNotFoundError(_name)
@@ -31,7 +31,7 @@ class TestPackageImports:
         monkeypatch.setattr(importlib.metadata, "version", _raise)
         importlib.reload(pkg)
         try:
-            assert pkg.__version__ == "0.6.0"
+            assert pkg.__version__ == "0.7.0"
         finally:
             monkeypatch.undo()
             importlib.reload(pkg)
@@ -126,7 +126,14 @@ class TestPackageImports:
         """Heuristic evaluation types are available from the package root."""
         names = {
             "DeckMetric",
+            "DeckEvaluation",
+            "DeckEvaluationBreakdown",
+            "DeckEvaluationBreakdownLine",
             "DeckEvaluationExplanation",
+            "DeckScore",
+            "WeightedScoreAggregator",
+            "default_metric_weights",
+            "default_metric_weight_items",
             "ManaCurveEvaluator",
             "LandRatioEvaluator",
             "ColorBalanceEvaluator",

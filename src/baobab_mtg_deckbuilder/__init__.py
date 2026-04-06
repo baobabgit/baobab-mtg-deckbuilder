@@ -32,11 +32,18 @@ from baobab_mtg_deckbuilder.deck_statistics import __all__ as _DECK_STATISTICS_A
 from baobab_mtg_deckbuilder.evaluation import (
     CardTypeBalanceEvaluator,
     ColorBalanceEvaluator,
+    DeckEvaluation,
+    DeckEvaluationBreakdown,
+    DeckEvaluationBreakdownLine,
     DeckEvaluationExplanation,
     DeckMetric,
+    DeckScore,
     LandRatioEvaluator,
     ManaBaseConsistencyEvaluator,
     ManaCurveEvaluator,
+    WeightedScoreAggregator,
+    default_metric_weight_items,
+    default_metric_weights,
     main_deck_card_quantity,
     main_nonland_spell_quantity,
 )
@@ -72,7 +79,7 @@ from baobab_mtg_deckbuilder.validation import __all__ as _VALIDATION_ALL
 try:
     __version__: str = version("baobab-mtg-deckbuilder")
 except PackageNotFoundError:
-    __version__ = "0.6.0"
+    __version__ = "0.7.0"
 
 __all__ = [
     "__version__",

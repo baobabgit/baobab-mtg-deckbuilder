@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "baobab-mtg-deckbuilder"
-version = "0.6.0"
+version = "0.7.0"
 description = "Bibliothèque Python pour construire, évaluer, comparer et optimiser des decks Magic: The Gathering."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -111,6 +111,14 @@ max-attributes = 12
 [tool.pylint.SIMILARITIES]
 # Règles main min construit / limité partagent volontairement la même forme d'appel.
 min-similarity-lines = 10
+
+# --- baobab-mtg-deckbuilder (miroir des poids : voir default_metric_weights.py) ---
+[tool.baobab_mtg_deckbuilder.evaluation.default_metric_weights]
+mana_curve_similarity = 0.2
+main_land_ratio = 0.2
+wubrg_color_balance = 0.2
+mana_data_consistency = 0.2
+card_type_diversity = 0.2
 
 # --- bandit ---
 [tool.bandit]
