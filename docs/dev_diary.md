@@ -2,6 +2,22 @@
 
 Les entrées les plus récentes apparaissent en premier.
 
+## 2026-04-06 (feature/optimization-engine)
+
+### Modifications
+
+- Ajout du paquet `optimization/` : requête / résultat / itération / état de recherche typés, `DeckOptimizationStrategy` (ABC), montée de colline (premier voisin strictement meilleur), amélioration itérative (meilleur voisin), faisceau simple (largeur `beam_width`, fusion déterministe par empreinte de deck) ; utilitaires `optimization_run_support` et `default_optimization_evaluation`.
+- Critères d'arrêt : `max_iterations`, stagnation sur le meilleur score global (`stagnation_patience` optionnel), `score_epsilon` ; graine injectée dans `DeckMutationContext` par itération / slot de faisceau / index d'opérateur.
+- Tests miroir (requête, stratégies, évaluation par défaut, `resolve_evaluate_deck`) ; version `0.10.0`, `README` / `CHANGELOG` / journal ; `flake8` `per-file-ignores` pour `optimization/__init__.py`.
+
+### Buts
+
+- Livrer la feature **10_optimization_engine** : moteur d'optimisation explicable, historisé et déterministe lorsque la graine est fixée.
+
+### Impact
+
+- Les pipelines pourront boucler sur mutations + scoring jusqu'à critères explicites, en conservant le meilleur candidat et le journal d'itérations pour l'analyse ou l'UI.
+
 ## 2026-04-06 (feature/mutation-operators)
 
 ### Modifications

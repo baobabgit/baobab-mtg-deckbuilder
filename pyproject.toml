@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "baobab-mtg-deckbuilder"
-version = "0.9.0"
+version = "0.10.0"
 description = "Bibliothèque Python pour construire, évaluer, comparer et optimiser des decks Magic: The Gathering."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -65,6 +65,7 @@ per-file-ignores = [
     "src/baobab_mtg_deckbuilder/evaluation/__init__.py:F401",
     "src/baobab_mtg_deckbuilder/generation/__init__.py:F401",
     "src/baobab_mtg_deckbuilder/mutation/__init__.py:F401",
+    "src/baobab_mtg_deckbuilder/optimization/__init__.py:F401",
 ]
 exclude = [
     ".git",
@@ -112,7 +113,8 @@ max-attributes = 12
 
 [tool.pylint.SIMILARITIES]
 # Règles main min construit / limité partagent volontairement la même forme d'appel.
-min-similarity-lines = 10
+# Stratégies d'optimisation partagent la boucle d'arrêt / historique (structure voulue).
+min-similarity-lines = 18
 
 # --- baobab-mtg-deckbuilder (miroir des poids : voir default_metric_weights.py) ---
 [tool.baobab_mtg_deckbuilder.evaluation.default_metric_weights]
