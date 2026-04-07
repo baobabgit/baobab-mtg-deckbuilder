@@ -108,6 +108,21 @@ mut_ctx = bd.DeckMutationContext(deck=result.candidates[0].deck, format_definiti
 mut_res = bd.ReplaceCardOperator(suggestion).apply(mut_ctx)
 print(mut_res.operator_id, mut_res.impact, mut_res.validation_report_after.is_valid)
 
+# Optimisation itérative (voisinage via opérateurs, historique, arrêts configurables)
+start_deck = result.candidates[0].deck
+opt_req = bd.DeckOptimizationRequest(
+    format_definition=constructed,
+    pool=pool,
+    initial_decks=(start_deck,),
+    mutation_operators=(bd.ReplaceCardOperator(suggestion),),
+    random_seed=7,
+    max_iterations=20,
+    stagnation_patience=3,
+    evaluate_deck=lambda d: bd.default_optimization_evaluation(d, MyAnalyticProvider()),
+)
+opt_res = bd.HillClimbingOptimizationStrategy().optimize(opt_req)
+print(opt_res.strategy_key, opt_res.stop_reason, opt_res.best_state.score_value, len(opt_res.iterations))
+
 # Hiérarchie d'exceptions (à utiliser pour les erreurs métier)
 raise bd.DeckValidationException("exemple : deck illégal")
 ```

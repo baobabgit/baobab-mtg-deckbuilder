@@ -23,7 +23,7 @@ class TestPackageImports:
     def test_version_fallback_when_distribution_missing(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """If distribution metadata is missing, ``__version__`` falls back to ``0.9.0``."""
+        """If distribution metadata is missing, ``__version__`` falls back to ``0.10.0``."""
 
         def _raise(_name: str) -> str:
             raise PackageNotFoundError(_name)
@@ -31,7 +31,7 @@ class TestPackageImports:
         monkeypatch.setattr(importlib.metadata, "version", _raise)
         importlib.reload(pkg)
         try:
-            assert pkg.__version__ == "0.9.0"
+            assert pkg.__version__ == "0.10.0"
         finally:
             monkeypatch.undo()
             importlib.reload(pkg)
@@ -135,6 +135,24 @@ class TestPackageImports:
             "AdjustLandCountOperator",
             "ColorFixOperator",
             "RoleSwapOperator",
+        }
+        for name in names:
+            assert hasattr(pkg, name)
+            obj = getattr(pkg, name)
+            assert obj.__module__.startswith("baobab_mtg_deckbuilder")
+
+    def test_public_optimization_exported(self) -> None:
+        """Optimisation itérative exposée à la racine."""
+        names = {
+            "DeckOptimizationStrategy",
+            "DeckOptimizationRequest",
+            "DeckOptimizationResult",
+            "DeckOptimizationIteration",
+            "DeckSearchState",
+            "HillClimbingOptimizationStrategy",
+            "IterativeImprovementStrategy",
+            "BeamSearchOptimizationStrategy",
+            "default_optimization_evaluation",
         }
         for name in names:
             assert hasattr(pkg, name)

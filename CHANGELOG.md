@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2026-04-06
+
+### Added
+
+- Domaine `optimization/` : `DeckOptimizationRequest`, `DeckOptimizationResult`, `DeckOptimizationIteration`, `DeckSearchState`, `DeckOptimizationStrategy` (ABC), stratégies `HillClimbingOptimizationStrategy`, `IterativeImprovementStrategy`, `BeamSearchOptimizationStrategy` ; critères d'arrêt `max_iterations`, `stagnation_patience` (optionnel), `score_epsilon` ; évaluation par défaut `default_optimization_evaluation` (statistiques + agrégateur pondéré).
+- Exception métier `DeckOptimizationException` déjà présente, utilisée pour configuration et decks initiaux invalides.
+- Export public depuis le package racine.
+
 ## [0.9.0] - 2026-04-06
 
 ### Added
